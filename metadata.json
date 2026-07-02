@@ -1,0 +1,6 @@
+{
+  "name": "AGRIC-MASTER",
+  "description": "AI-powered agricultural assistant providing structured insights for crop yield, disease assessment, market prices, and drought risks.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

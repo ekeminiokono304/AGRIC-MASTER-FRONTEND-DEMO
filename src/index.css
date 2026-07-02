@@ -1,0 +1,264 @@
+@import "tailwindcss";
+
+:root {
+  --bg-deep: #050e08;
+  --bg-mid: #0d1f14;
+  --accent-lime: #9ae600;
+  --accent-gold: #d4af37;
+  --accent-teal: #1fd1a7;
+  --glow-lime: rgba(154, 230, 0, 0.25);
+  --glow-gold: rgba(212, 175, 55, 0.18);
+  --text-primary: #eaf5e6;
+  --text-muted: #7fa387;
+}
+
+@theme {
+  --color-agric-bg: transparent;
+  --color-agric-panel: rgba(13, 31, 20, 0.7);
+  --color-agric-card: transparent;
+  --color-agric-border: rgba(154, 230, 0, 0.15);
+  --color-agric-border-light: rgba(154, 230, 0, 0.35);
+  --color-agric-border-dim: rgba(255, 255, 255, 0.05);
+  --color-agric-primary: var(--accent-lime);
+  --color-agric-primary-hover: #b4ff1a;
+  --color-agric-accent: var(--accent-lime);
+  --color-agric-text: var(--text-primary);
+  --color-agric-text-muted: var(--text-muted);
+  --color-agric-text-dim: #5c7a64;
+}
+
+body {
+  @apply text-agric-text antialiased;
+  background: linear-gradient(160deg, var(--bg-deep) 0%, var(--bg-mid) 100%);
+  min-height: 100vh;
+}
+
+/* Background animated layer */
+.bg-mesh-layer {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: linear-gradient(160deg, var(--bg-deep) 0%, var(--bg-mid) 100%);
+  overflow: hidden;
+}
+
+.blob-a, .blob-b, .blob-c {
+  position: absolute;
+  border-radius: 50%;
+}
+
+.blob-a {
+  top: 10%;
+  left: 10%;
+  width: 40vw;
+  height: 40vw;
+  background: radial-gradient(circle, var(--accent-lime) 0%, transparent 60%);
+  opacity: 0.08;
+  filter: blur(120px);
+  animation: drift-a 18s ease-in-out infinite alternate;
+}
+
+.blob-b {
+  bottom: 10%;
+  right: 10%;
+  width: 50vw;
+  height: 50vw;
+  background: radial-gradient(circle, var(--accent-gold) 0%, transparent 60%);
+  opacity: 0.06;
+  filter: blur(140px);
+  animation: drift-b 22s ease-in-out infinite alternate;
+}
+
+.blob-c {
+  top: 40%;
+  right: 20%;
+  width: 45vw;
+  height: 45vw;
+  background: radial-gradient(circle, var(--accent-teal) 0%, transparent 55%);
+  opacity: 0.05;
+  filter: blur(160px);
+  animation: drift-c 26s ease-in-out infinite alternate;
+}
+
+@keyframes drift-a {
+  0% { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(15vw, 15vh) scale(1.1); }
+}
+
+@keyframes drift-b {
+  0% { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(-15vw, -15vh) scale(1.05); }
+}
+
+@keyframes drift-c {
+  0% { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(-10vw, 20vh) scale(1.15); }
+}
+
+/* Ambient motes */
+.mote {
+  position: fixed;
+  border-radius: 50%;
+}
+.mote-1 { width: 3px; height: 3px; background: var(--accent-lime); top: 20%; left: 15%; animation: float-mote 10s ease-in-out infinite alternate; box-shadow: 0 0 10px var(--accent-lime); opacity: 0.2; }
+.mote-2 { width: 4px; height: 4px; background: var(--accent-teal); top: 60%; left: 80%; animation: float-mote 14s ease-in-out infinite alternate 2s; box-shadow: 0 0 10px var(--accent-teal); opacity: 0.15; }
+.mote-3 { width: 2px; height: 2px; background: var(--accent-lime); top: 80%; left: 30%; animation: float-mote 12s ease-in-out infinite alternate 5s; box-shadow: 0 0 10px var(--accent-lime); opacity: 0.25; }
+.mote-4 { width: 3px; height: 3px; background: var(--accent-teal); top: 30%; left: 70%; animation: float-mote 9s ease-in-out infinite alternate 1s; box-shadow: 0 0 10px var(--accent-teal); opacity: 0.3; }
+.mote-5 { width: 2px; height: 2px; background: var(--accent-gold); top: 50%; left: 40%; animation: float-mote 11s ease-in-out infinite alternate 4s; box-shadow: 0 0 10px var(--accent-gold); opacity: 0.2; }
+.mote-6 { width: 4px; height: 4px; background: var(--accent-lime); top: 85%; left: 85%; animation: float-mote 13s ease-in-out infinite alternate 3s; box-shadow: 0 0 10px var(--accent-lime); opacity: 0.15; }
+
+@keyframes float-mote {
+  0% { transform: translateY(-20px); }
+  100% { transform: translateY(20px); }
+}
+
+/* Card treatment */
+.agric-card {
+  background: linear-gradient(135deg, rgba(154,230,0,0.06) 0%, rgba(13,31,20,0.9) 40%, rgba(212,175,55,0.04) 100%);
+  border: 1px solid rgba(154,230,0,0.15);
+  box-shadow: 0 0 40px var(--glow-lime), inset 0 1px 0 rgba(255,255,255,0.04);
+  transition: border-color 300ms ease-out, box-shadow 300ms ease-out, transform 300ms ease-out;
+  backdrop-filter: blur(10px);
+}
+
+.agric-card:hover {
+  border-color: rgba(154,230,0,0.35);
+  box-shadow: 0 0 60px var(--glow-lime), inset 0 1px 0 rgba(255,255,255,0.04);
+  transform: translateY(-2px);
+}
+
+/* Llama badge shimmer */
+.llama-badge {
+  position: relative;
+  overflow: hidden;
+}
+.llama-badge::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(154,230,0,0.2), transparent);
+  background-size: 200% 100%;
+  animation: shimmer 3s infinite linear;
+  pointer-events: none;
+}
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* Sidebar Styles */
+.agric-sidebar {
+  background: 
+    radial-gradient(circle at 0% 0%, rgba(154,230,0,0.06) 0%, transparent 40%),
+    linear-gradient(180deg, rgba(13,31,20,0.95) 0%, rgba(5,14,8,0.98) 100%);
+  position: relative;
+}
+.agric-sidebar::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 1px;
+  background: linear-gradient(180deg, transparent 0%, rgba(154,230,0,0.25) 50%, transparent 100%);
+  pointer-events: none;
+}
+.logo-glow svg {
+  filter: drop-shadow(0 0 8px rgba(154,230,0,0.4));
+}
+.logo-text {
+  letter-spacing: 0.02em;
+}
+
+/* Sidebar nav item */
+.agric-nav-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem 0.75rem 1.5rem;
+  border-radius: 8px;
+  color: var(--text-muted);
+  transition: all 200ms ease;
+  border-left: 3px solid transparent;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+.agric-nav-item svg {
+  color: #7fa387;
+  transition: color 200ms ease;
+}
+
+.agric-nav-item:hover {
+  background: rgba(154,230,0,0.05);
+  color: var(--text-primary);
+  border-left-color: rgba(154,230,0,0.4);
+  transform: translateX(2px);
+  transition-timing-function: ease-out;
+}
+.agric-nav-item:hover svg {
+  color: var(--accent-lime);
+}
+
+.agric-nav-item.active {
+  background: linear-gradient(90deg, rgba(154,230,0,0.12) 0%, transparent 100%);
+  color: var(--text-primary);
+  font-weight: 600;
+  border-left-color: transparent;
+  transform: translateX(0);
+}
+.agric-nav-item.active:hover {
+  transform: translateX(2px);
+  border-left-color: transparent;
+}
+
+.agric-nav-item.active::before {
+  content: "";
+  position: absolute;
+  left: -3px;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: linear-gradient(to bottom, var(--accent-lime), var(--accent-teal));
+  border-radius: 3px 0 0 3px;
+}
+.agric-nav-item.active svg {
+  color: var(--accent-lime);
+  filter: drop-shadow(0 0 6px rgba(154,230,0,0.5));
+}
+
+.agric-nav-item.nav-disease.active svg {
+  filter: drop-shadow(0 0 6px rgba(212,175,55,0.5));
+}
+.agric-nav-item.nav-price.active svg {
+  filter: drop-shadow(0 0 6px rgba(31,209,167,0.5));
+}
+.agric-nav-item.nav-drought.active svg {
+  filter: drop-shadow(0 0 6px rgba(230,140,60,0.5));
+}
+
+@keyframes active-nav-breathe {
+  0%, 100% { opacity: 0.9; }
+  50% { opacity: 1; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .agric-nav-item.active svg {
+    animation: active-nav-breathe 4s ease-in-out infinite;
+  }
+}
+
+/* Input overrides */
+.agric-input {
+  background: rgba(13,31,20,0.6);
+  border: 1px solid rgba(154,230,0,0.15);
+  color: var(--text-primary);
+}
+.agric-input:focus {
+  border-color: var(--accent-lime);
+  box-shadow: 0 0 0 1px var(--accent-lime);
+}
+.agric-panel {
+  background: rgba(13,31,20,0.7);
+  backdrop-filter: blur(12px);
+}
