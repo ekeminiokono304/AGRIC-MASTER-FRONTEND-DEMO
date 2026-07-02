@@ -4,7 +4,7 @@ import { PredictionResponse } from '../types';
 // The backend is currently open, but we set up the interceptor 
 // so a bearer token can be dropped in later without refactoring.
 const apiClient = axios.create({
-  baseURL: import.meta.env.VITE_API_URL || 'https://agric-check.onrender.com', // Default until backend is deployed
+  baseURL: import.meta.env.VITE_API_URL || 'https://agric-master-demo.onrender.com', // Default until backend is deployed
   timeout: 15000, // 15 seconds timeout
   headers: {
     'Content-Type': 'application/json',
